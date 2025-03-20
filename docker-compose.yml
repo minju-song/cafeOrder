@@ -1,0 +1,45 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: songminju
+      MYSQL_DATABASE: cafeOrder
+      MYSQL_USER: minju
+      MYSQL_PASSWORD: minju
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  springboot:
+    build: .
+    container_name: springboot-app
+    restart: always
+    depends_on:
+      - mariadb
+      - redis
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mariadb:3306/cafeOrder
+      SPRING_DATASOURCE_USERNAME: minju
+      SPRING_DATASOURCE_PASSWORD: minju
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+
+networks:
+  app-network:
+    driver: bridge
