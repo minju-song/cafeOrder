@@ -24,7 +24,7 @@ services:
       - app-network
 
   springboot:
-    build: .
+    image: songminju9892/cafeorder:1.0.1
     container_name: springboot-app
     restart: always
     depends_on:
@@ -40,6 +40,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: minju
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
+      JAVA_OPTS: "-Dlogging.level.org.springframework.web=DEBUG -Dlogging.level.com.minju.cafeOrder=DEBUG"
 
   nginx:
     image: nginx:latest
