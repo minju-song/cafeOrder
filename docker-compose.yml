@@ -11,6 +11,8 @@ services:
       MARIADB_PASSWORD: minju
     ports:
       - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
     networks:
       - app-network
 

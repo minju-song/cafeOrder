@@ -7,7 +7,8 @@ public class MenuResponse {
             String name,
             String description,
             Category category,
-            int price
+            int price,
+            String image
     ) {
         public static MenuDto from(Menu menu) {
             return new MenuDto(
@@ -15,7 +16,8 @@ public class MenuResponse {
                     menu.getName(),
                     menu.getDescription(),
                     menu.getCategory(),
-                    menu.getPrice()
+                    menu.getPrice(),
+                    menu.getImage()
             );
         }
     }

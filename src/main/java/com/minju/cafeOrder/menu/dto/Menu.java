@@ -11,4 +11,5 @@ public class Menu {
     String description;
     Category category;
     int price;
+    String image;
 }
